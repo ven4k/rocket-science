@@ -26,8 +26,8 @@ const HotelFilter: FC = () => {
         { name: countriesEnum.Germany, checked: false }
     ])
     const [hotelType, setHotelType] = useState([
-        { name: 'Отель', checked: false },
-        { name: 'Аппартаменты', checked: false }
+        { name: 'Аппартаменты', checked: false },
+        { name: 'Отель', checked: false }
     ])
 
     const [countStars, setCountStars] = useState<ICheckbox[]>([
@@ -75,56 +75,66 @@ const HotelFilter: FC = () => {
         setCountStars(newStars)
     }
 
+    //clsx для стилей в замену ${styles.formBlock}
     return (
         <aside>
             <form>
                 <div className={styles.countries}>
-                    <input type='search' />
-                    <div className={styles.countriesList}>
-                        <h6>Страна</h6>
+                    <h6 className={styles.country}>Страна</h6>
+                    <input type='search' className={styles.search} placeholder="Поиск cтран" />
+                    <div className={`${styles.countriesList} ${styles.formBlock}`}>
                         {countries.map((q, index) => (
-                            <Fragment key={index}>
+                            <div key={index} className={styles.item}>
                                 <input type='checkbox' name={q.name} id={q.name} checked={q.checked} data-id={q.name} onChange={() => handleChangeContries(q)} />
                                 <label htmlFor={q.name}>{q.name}</label>
-                            </Fragment>
+                            </div>
                         ))}
                     </div>
                 </div>
                 <div className={styles.hotelType}>
                     <h6>Тип</h6>
+                    <div className={`${styles.typeItem} ${styles.formBlock}`}>
                     {hotelType.map((q, index) => (
-                        <Fragment key={index}>
+                        <div key={index} className={styles.item}>
                             <input type="checkbox" name={q.name} id={q.name} checked={q.checked} onChange={() => handleHotelTypeChange(q)} />
                             <label htmlFor={q.name}>{q.name}</label>
-                        </Fragment>
+                        </div>
                     ))}
+                    <div className={styles.hotelLine}></div>
+                    </div>
 
                 </div>
                 <div className={styles.countStars}>
+                    <h6>Количество звёзд</h6>
+                    <div className={`${styles.starItem} ${styles.formBlock}`}>
                     {countStars.map((q, index) => (
-                        <Fragment key={index}>
+                        <div key={index} className={styles.item}>
                             <input type="checkbox" name={q.name} id={q.name} checked={q.checked} onChange={() => handleChangeCountStars(q)} />
                             <label htmlFor={q.name}>{q.name}</label>
-                        </Fragment>
+                        </div>
                     ))}
+                    </div>
                 </div>
                 <div className={styles.feedbackCount}>
-                    <input type='text' />
+                    <h6>Количество отзывов (от)</h6>
+                    <input type='text' className={styles.formBlock} placeholder="Например, от 10"/>
                 </div>
                 <div className={styles.price}>
-                    <div>
-                        <input type='text' placeholder="От"/>
-                        <input type="text" placeholder="До"/>
+                    <h6>Цена</h6>
+                    <div className={styles.priceItems}>
+                        <div><input type='text' placeholder="от 0 ₽"/></div> 
+                        <div className={styles.priceLine}></div>
+                        <div><input type="text" placeholder="до 100 500 ₽" /></div>
                     </div>
-                    <div>
+                    <div className={styles.rangeBlock}>
                         <input type="range" />
                         <input type="range" />
                     </div>
 
                 </div>
                 <div className={styles.btnsFilter}>
-                    <button>Применить фильтр</button>
-                    <button>Очистить фильтр</button>
+                    <button className={`${styles.formButton} ${styles.accept}`}>Применить фильтр</button>
+                    <button className={`${styles.formButton} ${styles.reset}`}>Очистить фильтр</button>
                 </div>
             </form>
         </aside>
