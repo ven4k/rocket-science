@@ -1,0 +1,172 @@
+@import "../../assets/styles/index.scss";
+
+.hotelItem {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border: 1px solid $borderBlock;
+  padding: 25px;
+  margin: 0 0 15px 0;
+  border-radius: 10px;
+
+  .item1 {
+    width: 560px;
+
+    .name {
+      color: $darkGray;
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+    }
+
+    .info {
+      display: flex;
+      align-items: center;
+      margin: 0 0 16px 0;
+      .starsBlock {
+        margin: 0 15px 0 0;
+        .activeStar {
+          margin: 0 6px 0 0;
+        }
+      }
+
+      .dot {
+        border-radius: 50%;
+        width: 4px;
+        height: 4px;
+        background: #949494;
+        margin: 0 8px 0 6px;
+      }
+      .hotelType {
+        color: #868686;
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .reviews {
+        color: #868686;
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0 15px 0 0;
+      }
+      .country {
+        color: #3a3a3a;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+        .geopositionIco {
+          position: relative;
+          top: 2px;
+          margin: 0 8px 0 0;
+        }
+      }
+    }
+  }
+  .decription {
+    width: 560px;
+    color: $darkGray;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  .item2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .price {
+      color: $darkGray;
+      font-size: 25px;
+      font-family: $PTSans;
+      font-weight: 700;
+      width: 84px;
+    }
+
+    .priceOneDay {
+      width: 100%;
+      color: #868686;
+      width: 79px;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    .reserve {
+      margin: 27px 0 0 0;
+      position: relative;
+      .btnBackground {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #6a53f5;
+        opacity: 0.1;
+        border-radius: 10px;
+      }
+      .reserveIco {
+        position: relative;
+        margin: 0 10px 0 0;
+      }
+      span {
+        position: relative;
+        color: #6a53f5;
+        font-family: $PTSans;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        z-index: 20;
+      }
+    }
+  }
+}
+
+.paginatePage {
+  width: 100%;
+  height: 40px;
+  margin: 40px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+
+  .page {
+    margin: 0 35px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .prevBtn {
+    margin: 0 50px 0 0;
+    color: #3a3a3a;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+  }
+  .nextBtn {
+    margin: 0 0 0 50px;
+    color: #3a3a3a;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+  }
+  .link,
+  .activeLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+  }
+  .activeLink {
+    border-radius: 2px;
+    background-color: rgba(106, 83, 245, 0.1);
+    color: #6a53f5;
+  }
+  .disabledLink {
+    color: #dbdbdb;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+}
+//Добавить переменные для цветов

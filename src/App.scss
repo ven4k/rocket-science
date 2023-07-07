@@ -1,9 +1,10 @@
+@import "./assets/styles/index.scss";
 .App {
   margin: 0 auto;
   width: 1920px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'PT Sans';
-  background: #fff;
+  font-family: $PTSans;
+  background: $white;
 }
