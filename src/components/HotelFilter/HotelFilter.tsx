@@ -48,6 +48,8 @@ const HotelFilter: FC = () => {
 
     const [minPrice, setMinPrice] = useState<number>();
     const [maxPrice, setMaxPrice] = useState<number>();
+
+    const [searchValue, setSearchValue] = useState<string>('')
     const handleChangeContries = (item: ICheckbox) => {
         let newCountries = countries.map(w => {
             if (w.name === item.name) {
@@ -100,12 +102,17 @@ const HotelFilter: FC = () => {
             }
         }
     }
+
+    const handleChangeSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(e.target.value)
+    }
+
     return (
         <aside>
             <form>
                 <div className={styles.countries}>
                     <h6 className={styles.country}>Страна</h6>
-                    <input type='search' className={styles.search} placeholder="Поиск cтран" />
+                    <input type='search' className={styles.search} onChange={handleChangeSearchInput} value={searchValue} placeholder="Поиск cтран" />
                     <Search className={styles.searchIco} />
                     <div className={clsx([styles.countriesList, styles.formBlock])}>
                         {countries.map((q, index) => (

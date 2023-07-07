@@ -52,7 +52,7 @@ aside {
     flex-direction: column;
     .searchIco {
       position: absolute;
-      top: 48px;
+      top: 52px;
       left: 20px;
       width: 16px;
       height: 16px;
@@ -66,9 +66,8 @@ aside {
       border: 1px $borderBlock solid;
       border-radius: 10px;
       height: 50px;
-      color: $placeholderColor;
-      font-family: "PT Sans";
-      padding: 14px 0 15px 46px;
+      color: $darkGray;
+      padding: 14px 20px 15px 46px;
       margin: 0 0 10px 0;
     }
   }
