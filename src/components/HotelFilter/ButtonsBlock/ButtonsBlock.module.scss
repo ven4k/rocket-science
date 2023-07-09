@@ -1,0 +1,24 @@
+@import '../../../assets/styles/index.scss';
+
+.btnsFilter {
+  width: 100%;
+    margin: 40px 0 0 0;
+
+    .accept {
+      background: $btnAccept;
+      border: none;
+      margin: 0 0 15px 0;
+      color: $white;
+    }
+
+    .reset {
+      border: 1px solid $borderBlock;
+      background: none;
+      color: $darkGray;
+    }
+    .exitIco {
+      margin: 0 10px 0 0;
+      width: 10px;
+      height: 10px;
+    }
+  }

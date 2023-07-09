@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { HotelItems } from "../HotelItems/HotelItems";
+import { HotelItems } from "./HotelItems/HotelItems";
 import styles from './Hotels.module.scss';
 
 

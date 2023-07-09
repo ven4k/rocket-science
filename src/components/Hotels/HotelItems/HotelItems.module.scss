@@ -1,4 +1,4 @@
-@import "../../assets/styles/index.scss";
+@import '../../../assets/styles/index.scss';
 
 .hotelItem {
   display: flex;
@@ -89,37 +89,8 @@
       font-size: 12px;
       font-weight: 400;
     }
-    .reserve {
-      margin: 27px 0 0 0;
-      position: relative;
-      .btnBackground {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #6a53f5;
-        opacity: 0.1;
-        border-radius: 10px;
-      }
-      .reserveIco {
-        position: relative;
-        margin: 0 10px 0 0;
-      }
-      span {
-        position: relative;
-        color: #6a53f5;
-        font-family: $PTSans;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        z-index: 20;
-      }
-    }
   }
 }
-
 .paginatePage {
   width: 100%;
   height: 40px;
@@ -156,6 +127,10 @@
     align-items: center;
     width: 40px;
     height: 40px;
+  }
+  .link:hover,
+  .activeLink:hover{
+    cursor: pointer;
   }
   .activeLink {
     border-radius: 2px;
