@@ -1,5 +1,5 @@
 @import "../../../assets/styles/index.scss";
-@import '../OverAll.scss';
+@import "../OverAll.scss";
 .countries {
   width: 100%;
   position: relative;
@@ -15,6 +15,9 @@
 
   .country {
     margin: 0 0 14px 0;
+  }
+  .country:hover {
+    cursor: pointer;
   }
 
   .search {

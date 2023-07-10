@@ -1,37 +1,44 @@
-import { FC, Fragment, useState  } from "react";
+import { FC, Fragment, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { Button } from "../../Button/Button";
 import { ReactComponent as ActiveStar } from '../../../assets/svg/activeStar.svg';
 import { ReactComponent as NonActiveStar } from '../../../assets/svg/star.svg';
 import { ReactComponent as Geoposition } from '../../../assets/svg/geoposition.svg';
 import styles from './HotelItems.module.scss';
-import { useAppSelector } from "../../../store/hoots";
+import { useAppDispatch, useAppSelector } from "../../../store/hoots";
+import { reserveHotel, unreserveHotel } from "../../../store/hotelSlice";
+import { ButtonReserver } from "../../ButtonReserver/ButtonReserver";
 
 
 export const HotelItems: FC = () => {
     const hotels = useAppSelector(state => state.hotelsList.hotelData)
+    const dispatch = useAppDispatch();
+    const hotelsReserved = useAppSelector(state => state.hotelsList.reservedHotels)
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 3;
     const [itemOffset, setItemOffset] = useState(0);
     const endOffset = itemOffset + itemsPerPage;
     const currentItems = hotels.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(hotels.length / itemsPerPage);
-    
-    // const handlePageClick = (e: ) => {
-    //     e.preventDefault();
-    //     const newOffset = (e.selected * itemsPerPage) % hotels.length;
-    //     setItemOffset(newOffset);
-    //     setCurrentPage(e.selected)
-    // };
 
 
-    const renderItems = currentItems.map((el: any) => {
+    const renderItems = currentItems.map((el) => {
         const countActiveStars = new Array(Math.floor(el.stars)).fill('');
         let countNonActiveStars: string[] = [];
         if (countActiveStars.length < 5) {
             countNonActiveStars = new Array(5 - countActiveStars.length).fill('');
         }
         const formatPrice = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0, }).format(el.min_price);
+
+        const isReserved = hotelsReserved.includes(el);
+
+        const handleClickReserve = () => {
+            if (isReserved) {
+                dispatch(unreserveHotel({ hotel: el }));
+            } else {
+                dispatch(reserveHotel({ hotel: el }));
+            }
+        }
+
         return (
             <Fragment key={el.name}>
                 <div className={styles.hotelItem} >
@@ -63,7 +70,7 @@ export const HotelItems: FC = () => {
                     <div className={styles.item2}>
                         <h4 className={styles.price}>{formatPrice}</h4>
                         <span className={styles.priceOneDay}>Цена за 1 день</span>
-                        <Button className={styles.reserve} reservedBtn />
+                        <ButtonReserver isReserver={isReserved} onClick={handleClickReserve} />
                     </div>
 
                 </div>

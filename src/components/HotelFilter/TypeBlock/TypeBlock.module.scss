@@ -1,20 +1,29 @@
-@import '../../../assets/styles/index.scss';
-@import '../OverAll.scss';
+@import "../../../assets/styles/index.scss";
+@import "../OverAll.scss";
 .hotelType {
   width: 100%;
-    .typeItem {
-      background: $backgroundBlockColor;
-      position: relative;
-      height: 120px;
+  .disabledBlock {
+    visibility: hidden;
+  }
+  .activeBlock {
+    visibility: visible;
+  }
+  .typeItem {
+    background: $backgroundBlockColor;
+    position: relative;
+    height: 120px;
 
-      .item {
-        margin: 0 0 32px 0;
-      }
-      .hotelLine {
-        position: absolute;
-        width: 284px;
-        border-bottom: 1px solid $borderBlock;
-        top: 60px;
-      }
+    .item {
+      margin: 0 0 32px 0;
+    }
+    .hotelLine {
+      position: absolute;
+      width: 284px;
+      border-bottom: 1px solid $borderBlock;
+      top: 60px;
     }
   }
+  .blockName:hover {
+    cursor: pointer;
+  }
+}

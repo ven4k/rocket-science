@@ -1,9 +1,9 @@
 import { FC } from "react"
+import clsx from "clsx";
 import { ICheckbox } from "../HotelFilter";
 import { useAppSelector, useAppDispatch } from "../../../store/hoots";
-import styles from './CountStarsBlock.module.scss';
-import clsx from "clsx";
 import { addCountStars } from "../../../store/hotelSlice";
+import styles from './CountStarsBlock.module.scss';
 
 export const CountStarsBlock: FC = () => {
 
@@ -29,7 +29,7 @@ export const CountStarsBlock: FC = () => {
                     {countStars.map((q, index) => (
                         <div key={index} className={styles.item}>
                             <input type="checkbox" className={styles.checkbox} name={q.name} id={q.name} checked={q.checked} onChange={() => handleChangeCountStars(q)} />
-                            <label className={styles.checkboxName}  htmlFor={q.name}>{q.name}</label>
+                            <label className={styles.checkboxName} htmlFor={q.name}>{q.name}</label>
                         </div>
                     ))}
                 </div>

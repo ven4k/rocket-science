@@ -1,8 +1,8 @@
 import { ChangeEvent, FC } from 'react';
-import styles from './PriceBlock.module.scss';
 import ReactSlider from 'react-slider';
 import { useAppSelector, useAppDispatch } from "../../../store/hoots";
 import { addMaxPrice, addMinPrice } from '../../../store/hotelSlice';
+import styles from './PriceBlock.module.scss';
 
 
 export const PriceBlock: FC = () => {
@@ -10,7 +10,7 @@ export const PriceBlock: FC = () => {
     const minPrice = useAppSelector(state => state.hotelsList.filters.minPrice);
     const maxPrice = useAppSelector(state => state.hotelsList.filters.maxPrice);
 
-        const handlePriceChange = (min: boolean, e: ChangeEvent<HTMLInputElement>) => {
+    const handlePriceChange = (min: boolean, e: ChangeEvent<HTMLInputElement>) => {
         if (min) {
             if (Number(e.target.value) > 100500) {
                 dispatch(addMinPrice(100500))

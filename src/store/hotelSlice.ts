@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { original } from "immer";
 import data from "../hotels.json";
 import { ICheckbox } from "../components/HotelFilter/HotelFilter";
 
@@ -11,7 +12,7 @@ const enum countriesEnum {
   Germany = "Германия",
 }
 
-interface IHotels {
+interface IHotel {
   name: string;
   country: string;
   address: string;
@@ -35,7 +36,8 @@ interface IinitialState {
     maxPrice: number;
     feedbackCount: number;
   };
-  hotelData: IHotels[];
+  hotelData: IHotel[];
+  reservedHotels: IHotel[];
 }
 
 const initialState: IinitialState = {
@@ -49,7 +51,7 @@ const initialState: IinitialState = {
       { name: countriesEnum.Germany, checked: false },
     ],
     hotelType: [
-      { name: "Аппартаменты", checked: false },
+      { name: "Апартаменты", checked: false },
       { name: "Отель", checked: false },
     ],
     countStars: [
@@ -64,6 +66,7 @@ const initialState: IinitialState = {
     feedbackCount: 0,
   },
   hotelData: data.hotels,
+  reservedHotels: [],
 };
 
 export const hotelSlice = createSlice({
@@ -88,37 +91,60 @@ export const hotelSlice = createSlice({
     addFeedbackCount: (state, action: PayloadAction<number>) => {
       state.filters.feedbackCount = action.payload;
     },
+    reserveHotel(state, action: PayloadAction<{ hotel: IHotel }>) {
+      state.reservedHotels = [...state.reservedHotels, action.payload.hotel];
+    },
+    unreserveHotel(state, action: PayloadAction<{ hotel: IHotel }>) {
+      state.reservedHotels = state.reservedHotels.filter((item) => {
+        return original(item) !== action.payload.hotel;
+      });
+    },
     filters: (state) => {
- 
-     
-      // if (state.filters.hotelType) {
-      //   state.hotelData.filter((el) => {
-      //     state.filters.hotelType.map((item) => {
-      //       return item.checked && el.type === item.name;
-      //     });
-      //   });
-      // }
-      // if (state.filters.countStars) {
-      //   state.hotelData.filter((el) => {
-      //     state.filters.countStars.map((item) => {
-      //       return item.checked && Math.floor(el.rating) === item.rating;
-      //     });
-      //   });
-      // }
-      // if (state.filters.countStars) {
-      //   state.hotelData.filter((el) => {
-      //     return (
-      //       state.filters.minPrice === el.min_price ||
-      //       state.filters.maxPrice === el.min_price
-      //     );
-      //   });
-      // }
-      // if (state.filters.feedbackCount) {
-      //   state.hotelData.filter((el) => {
-      //     return state.filters.feedbackCount === el.reviews_amount;
-      //   });
-      // }
-      // return state;
+      const newCountry = state.filters.countries.filter((el) => el.checked);
+      const newHotelType = state.filters.hotelType.filter((el) => el.checked);
+      const newStars = state.filters.countStars.filter((el) => el.checked);
+
+      if (newCountry.length) {
+        let newHotels = state.hotelData.filter((el) =>
+          newCountry.some((item) => el.country === item.name)
+        );
+        state.hotelData = [...newHotels];
+      }
+      if (newHotelType.length) {
+        let newHotels = state.hotelData.filter((el) =>
+          newHotelType.some((item) => el.type === item.name)
+        );
+        state.hotelData = [...newHotels];
+      }
+      if (newStars.length) {
+        let newHotels = state.hotelData.filter((el) =>
+          newStars.some((item) => Math.floor(el.rating) === item.rating)
+        );
+        state.hotelData = [...newHotels];
+      }
+      if (state.filters.minPrice >= 0) {
+        let newHotels = state.hotelData.filter(
+          (el) =>
+            Math.floor(el.min_price) >= state.filters.minPrice &&
+            Math.floor(el.min_price) <= state.filters.maxPrice
+        );
+        state.hotelData = [...newHotels];
+      }
+      if (state.filters.feedbackCount >= 0) {
+        let newHotels = state.hotelData.filter(
+          (el) => el.reviews_amount >= state.filters.feedbackCount
+        );
+        state.hotelData = [...newHotels];
+      }
+    },
+    resetFilters: (state) => {
+      state.hotelData = initialState.hotelData;
+      state.filters.countStars = initialState.filters.countStars;
+      state.filters.countries = initialState.filters.countries;
+      state.filters.feedbackCount = initialState.filters.feedbackCount;
+      state.filters.hotelType = initialState.filters.hotelType;
+      state.filters.maxPrice = initialState.filters.maxPrice;
+      state.filters.minPrice = initialState.filters.minPrice;
     },
   },
 });
@@ -129,5 +155,8 @@ export const {
   addMinPrice,
   addMaxPrice,
   addFeedbackCount,
+  reserveHotel,
+  unreserveHotel,
   filters,
+  resetFilters,
 } = hotelSlice.actions;

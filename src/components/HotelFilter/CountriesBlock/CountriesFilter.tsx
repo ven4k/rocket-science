@@ -1,16 +1,20 @@
 import { ChangeEvent, FC, useState } from "react"
 import clsx from "clsx";
-import { ReactComponent as Search } from '../../../assets/svg/search.svg';
-import styles from './CountriesFilter.module.scss';
 import { ICheckbox } from "../HotelFilter";
+import { ReactComponent as Search } from '../../../assets/svg/search.svg';
 import { useAppSelector, useAppDispatch } from "../../../store/hoots";
 import { addCountries } from "../../../store/hotelSlice";
+import styles from './CountriesFilter.module.scss';
 
 
 export const CountriesBlock: FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
+    const [isActive, setIsActive] = useState(false)
     const dispatch = useAppDispatch();
     const countries = useAppSelector(state => state.hotelsList.filters.countries)
+
+    const newCountries = countries.map(el => el.name.includes(searchValue));
+    console.log(newCountries)
     const handleChangeSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value)
     }
@@ -28,18 +32,21 @@ export const CountriesBlock: FC = () => {
     }
     return (
         <>
-            <div className={styles.countries}>
-                <h6 className={clsx([styles.country, styles.blockName])}>Страна</h6>
+            <div className={styles.countries} onFocus={() => setIsActive(true)}>
+                <h6 className={clsx([styles.country, styles.blockName])} onClick={() => setIsActive(!isActive)}>Страна</h6>
                 <input type='search' className={styles.search} onChange={handleChangeSearchInput} value={searchValue} placeholder="Поиск cтран" />
                 <Search className={styles.searchIco} />
-                <div className={clsx([styles.countriesList, styles.formBlock])}>
-                    {countries.map((q, index) => (
-                        <div key={index} className={styles.item}>
-                            <input type='checkbox' className={styles.checkbox} name={q.name} id={q.name} checked={q.checked} data-id={q.name} onChange={() => handleChangeContries(q)} />
-                            <label className={styles.checkboxName} htmlFor={q.name}>{q.name}</label>
-                        </div>
-                    ))}
-                </div>
+                {isActive && (
+                    <div className={clsx([styles.countriesList, styles.formBlock])}>
+                        {countries.map((q, index) => (
+                            <div key={index} className={styles.item}>
+                                <input type='checkbox' className={styles.checkbox} name={q.name} id={q.name} checked={q.checked} data-id={q.name} onChange={() => handleChangeContries(q)} />
+                                <label className={styles.checkboxName} htmlFor={q.name}>{q.name}</label>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
             </div>
         </>
     )

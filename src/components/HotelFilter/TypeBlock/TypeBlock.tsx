@@ -1,15 +1,15 @@
-import { FC } from "react"
-import { ICheckbox } from "../HotelFilter";
+import { FC, useState } from "react"
+import clsx from "clsx";
 import { useAppSelector, useAppDispatch } from "../../../store/hoots";
+import { ICheckbox } from "../HotelFilter";
 import { addHotelType } from "../../../store/hotelSlice";
 import styles from './TypeBlock.module.scss';
-import clsx from "clsx";
 
 export const TypeBlock: FC = () => {
 
     const hotelType = useAppSelector(state => state.hotelsList.filters.hotelType);
     const dispatch = useAppDispatch();
-
+    const [isActive, setIsActive] = useState(false);
     const handleHotelTypeChange = (item: ICheckbox) => {
         let newType = hotelType.map(w => {
             if (w.name === item.name) {
@@ -25,8 +25,8 @@ export const TypeBlock: FC = () => {
     return (
         <>
             <div className={styles.hotelType}>
-                <h6 className={styles.blockName}>Тип</h6>
-                <div className={clsx([styles.typeItem, styles.formBlock])}>
+                <h6 className={styles.blockName} onClick={() => setIsActive(!isActive)}>Тип &#9660;</h6>
+                <div className={clsx([styles.typeItem, styles.formBlock], { [styles.disabledBlock]: !isActive, [styles.activeBlock]: isActive, })}>
                     {hotelType.map((q, index) => (
                         <div key={index} className={styles.item}>
                             <input type="checkbox" className={styles.checkbox} name={q.name} id={q.name} checked={q.checked} onChange={() => handleHotelTypeChange(q)} />
