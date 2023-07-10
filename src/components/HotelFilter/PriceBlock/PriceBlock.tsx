@@ -1,6 +1,6 @@
 import { ChangeEvent, FC } from 'react';
 import ReactSlider from 'react-slider';
-import { useAppSelector, useAppDispatch } from "../../../store/hoots";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { addMaxPrice, addMinPrice } from '../../../store/hotelSlice';
 import styles from './PriceBlock.module.scss';
 

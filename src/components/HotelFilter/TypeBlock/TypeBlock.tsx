@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import clsx from "clsx";
-import { useAppSelector, useAppDispatch } from "../../../store/hoots";
-import { ICheckbox } from "../HotelFilter";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
+import { ICheckbox } from "../../../types/types";
 import { addHotelType } from "../../../store/hotelSlice";
 import styles from './TypeBlock.module.scss';
 

@@ -4,7 +4,7 @@ import { ReactComponent as ActiveStar } from '../../../assets/svg/activeStar.svg
 import { ReactComponent as NonActiveStar } from '../../../assets/svg/star.svg';
 import { ReactComponent as Geoposition } from '../../../assets/svg/geoposition.svg';
 import styles from './HotelItems.module.scss';
-import { useAppDispatch, useAppSelector } from "../../../store/hoots";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { reserveHotel, unreserveHotel } from "../../../store/hotelSlice";
 import { ButtonReserver } from "../../ButtonReserver/ButtonReserver";
 

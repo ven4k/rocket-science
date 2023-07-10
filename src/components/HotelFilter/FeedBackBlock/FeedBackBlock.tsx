@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../store/hoots';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { addFeedbackCount } from '../../../store/hotelSlice';
 import styles from './FeedBackBlock.module.scss';
 

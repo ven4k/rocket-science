@@ -1,8 +1,8 @@
 import { ChangeEvent, FC, useState } from "react"
 import clsx from "clsx";
-import { ICheckbox } from "../HotelFilter";
+import { ICheckbox } from "../../../types/types";
 import { ReactComponent as Search } from '../../../assets/svg/search.svg';
-import { useAppSelector, useAppDispatch } from "../../../store/hoots";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { addCountries } from "../../../store/hotelSlice";
 import styles from './CountriesFilter.module.scss';
 

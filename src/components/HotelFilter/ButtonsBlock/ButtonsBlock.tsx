@@ -1,5 +1,5 @@
 import { filters, resetFilters } from "../../../store/hotelSlice";
-import { useAppDispatch } from "../../../store/hoots";
+import { useAppDispatch } from "../../../store/hooks";
 import { Button } from "../../Button/Button"
 import { ReactComponent as Exit } from '../../../assets/svg/exit.svg';
 import styles from './ButtonsBlock.module.scss';

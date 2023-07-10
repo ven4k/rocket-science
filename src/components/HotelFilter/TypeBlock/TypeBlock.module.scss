@@ -3,10 +3,10 @@
 .hotelType {
   width: 100%;
   .disabledBlock {
-    visibility: hidden;
+    display: none;
   }
   .activeBlock {
-    visibility: visible;
+    display: block;
   }
   .typeItem {
     background: $backgroundBlockColor;

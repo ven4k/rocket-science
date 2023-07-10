@@ -1,7 +1,7 @@
 import { FC } from "react"
 import clsx from "clsx";
 import { ICheckbox } from "../HotelFilter";
-import { useAppSelector, useAppDispatch } from "../../../store/hoots";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { addCountStars } from "../../../store/hotelSlice";
 import styles from './CountStarsBlock.module.scss';
 
