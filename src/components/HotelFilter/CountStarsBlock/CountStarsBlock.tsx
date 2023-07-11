@@ -1,9 +1,10 @@
 import { FC } from "react"
 import clsx from "clsx";
-import { ICheckbox } from "../HotelFilter";
+import { ICheckbox } from "../../../types/types";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { addCountStars } from "../../../store/hotelSlice";
 import styles from './CountStarsBlock.module.scss';
+
 
 export const CountStarsBlock: FC = () => {
 

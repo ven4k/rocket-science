@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { original } from "immer";
 import data from "../hotels.json";
-import { ICheckbox } from "../components/HotelFilter/HotelFilter";
+import { ICheckbox, IHotel, IinitialState } from "../types/types";
 
 const enum countriesEnum {
   Azerbaijan = "Азербайджан",
@@ -10,34 +10,6 @@ const enum countriesEnum {
   Angola = "Ангола",
   Russia = "Россия",
   Germany = "Германия",
-}
-
-interface IHotel {
-  name: string;
-  country: string;
-  address: string;
-  stars: number;
-  type: string;
-  description: string;
-  services: string[];
-  min_price: number;
-  currency: string;
-  rating: number;
-  reviews_amount: number;
-  last_review: string;
-}
-
-interface IinitialState {
-  filters: {
-    countries: ICheckbox[];
-    hotelType: ICheckbox[];
-    countStars: ICheckbox[];
-    minPrice: number;
-    maxPrice: number;
-    feedbackCount: number;
-  };
-  hotelData: IHotel[];
-  reservedHotels: IHotel[];
 }
 
 const initialState: IinitialState = {
@@ -146,6 +118,9 @@ export const hotelSlice = createSlice({
       state.filters.maxPrice = initialState.filters.maxPrice;
       state.filters.minPrice = initialState.filters.minPrice;
     },
+    resetHotels: (state) => {
+      state.hotelData = initialState.hotelData;
+    },
   },
 });
 export const {
@@ -159,4 +134,5 @@ export const {
   unreserveHotel,
   filters,
   resetFilters,
+  resetHotels,
 } = hotelSlice.actions;

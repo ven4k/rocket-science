@@ -1,4 +1,4 @@
-import { filters, resetFilters } from "../../../store/hotelSlice";
+import { filters, resetFilters, resetHotels } from "../../../store/hotelSlice";
 import { useAppDispatch } from "../../../store/hooks";
 import { Button } from "../../Button/Button"
 import { ReactComponent as Exit } from '../../../assets/svg/exit.svg';
@@ -14,6 +14,7 @@ export const ButtonsBlock = () => {
             <div className={styles.btnsFilter}>
                 <Button filter className={styles.accept} onClick={(e) => {
                     e.preventDefault()
+                    dispatch(resetHotels())
                     dispatch(filters())
                 }}>Применить фильтр</Button>
                 <Button filter className={styles.reset} onClick={(e) => {

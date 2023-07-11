@@ -22,6 +22,9 @@ body,
   flex-direction: column;
   flex-grow: 1;
 }
+button:hover {
+  cursor: pointer;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

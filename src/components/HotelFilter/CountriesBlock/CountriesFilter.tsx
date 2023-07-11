@@ -13,7 +13,7 @@ export const CountriesBlock: FC = () => {
     const dispatch = useAppDispatch();
     const countries = useAppSelector(state => state.hotelsList.filters.countries)
 
-    const newCountries = countries.map(el => el.name.includes(searchValue));
+    const newCountries = countries.filter(el => el.name.includes(searchValue));
     console.log(newCountries)
     const handleChangeSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value)
@@ -28,6 +28,7 @@ export const CountriesBlock: FC = () => {
                 return w
             }
         })
+
         dispatch(addCountries(newCountries))
     }
     return (
@@ -36,9 +37,9 @@ export const CountriesBlock: FC = () => {
                 <h6 className={clsx([styles.country, styles.blockName])} onClick={() => setIsActive(!isActive)}>Страна</h6>
                 <input type='search' className={styles.search} onChange={handleChangeSearchInput} value={searchValue} placeholder="Поиск cтран" />
                 <Search className={styles.searchIco} />
-                {isActive && (
+                {(isActive && newCountries.length > 0) && (
                     <div className={clsx([styles.countriesList, styles.formBlock])}>
-                        {countries.map((q, index) => (
+                        {newCountries.map((q, index) => (
                             <div key={index} className={styles.item}>
                                 <input type='checkbox' className={styles.checkbox} name={q.name} id={q.name} checked={q.checked} data-id={q.name} onChange={() => handleChangeContries(q)} />
                                 <label className={styles.checkboxName} htmlFor={q.name}>{q.name}</label>
@@ -46,7 +47,11 @@ export const CountriesBlock: FC = () => {
                         ))}
                     </div>
                 )}
-
+                {(isActive && newCountries.length <= 0) && (
+                    <div className={clsx([styles.emptyList, styles.formBlock])}>
+                        <p> К сожалению, по вашему запросу ничего не найдено :(</p>
+                    </div>
+                )}
             </div>
         </>
     )

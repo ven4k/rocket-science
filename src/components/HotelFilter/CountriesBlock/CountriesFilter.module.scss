@@ -28,4 +28,13 @@
     padding: 14px 20px 15px 46px;
     margin: 0 0 10px 0;
   }
+  .countriesList {
+    min-height: 202px;
+  }
+  .emptyList {
+    display: flex;
+    align-items: center;
+    min-height: 202px;
+    text-align: center;
+  }
 }

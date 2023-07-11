@@ -8,12 +8,6 @@ import { ButtonsBlock } from "./ButtonsBlock/ButtonsBlock";
 import styles from './HotelFilter.module.scss';
 
 
-export interface ICheckbox {
-    name: string,
-    checked: boolean,
-    id?: string;
-    rating?: number
-};
 
 const HotelFilter: FC = () => {
     return (

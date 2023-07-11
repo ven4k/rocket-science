@@ -1,45 +1,45 @@
-@import '../../assets/styles/index.scss';
+@import "../../assets/styles/index.scss";
 
 .blockName {
-    color: $darkGray;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: normal;
-    margin: 0 0 14px 0;
-  }
- .checkboxName {
-    margin-left: 16px;
-  }
-  
-  .item {
-    margin: 12px 0 12px;
-  }
-  .checkbox{
-    appearance: none;
-  }
-  
-  .checkbox::after {
-    position: relative;
-    display: block;
-    left: 0px;
-    top: 5px;
-    width: 18px;
-    height: 18px;
-    border: 1px solid $checkboxBorderColor;
-    content: "";
-    border-radius: 4px;
-    background: $white;
-  }
-  
-  .checkbox:checked::after {
-    border: 1px solid $lighGreen;
-    background: url("../../assets/svg/galochka.svg") $lighGreen no-repeat center;
-  }
-  
-  .formBlock {
-    border: 1px solid $borderBlock;
-    border-radius: 8px;
-    padding: 14px 20px;
-    width: 325px;
-    margin: 0 0 26px 0;
-  }
+  color: $darkGray;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0 0 14px 0;
+}
+.checkboxName {
+  margin-left: 16px;
+}
+
+.item {
+  margin: 12px 0 12px;
+}
+.checkbox {
+  appearance: none;
+}
+
+.checkbox::after {
+  position: relative;
+  display: block;
+  left: 0px;
+  top: 5px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid $checkboxBorderColor;
+  content: "";
+  border-radius: 4px;
+  background: $white;
+}
+
+.checkbox:checked::after {
+  border: 1px solid $lighGreen;
+  background: url("../../assets/svg/accept.svg") $lighGreen no-repeat center;
+}
+
+.formBlock {
+  border: 1px solid $borderBlock;
+  border-radius: 8px;
+  padding: 14px 20px;
+  min-width: 325px;
+  margin: 0 0 26px 0;
+}

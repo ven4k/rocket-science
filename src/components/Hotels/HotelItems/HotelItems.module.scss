@@ -143,4 +143,35 @@
     line-height: 24px;
   }
 }
+.emptyHotels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 835px;
+  height: 475px;
+  border: 1px solid $borderBlock;
+  .emptyTitle {
+    margin: 34px 0 0 0;
+    color: $darkGray;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .emptyText {
+    margin: 8px 0 0 0;
+    color: $lightGray;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .resetBtn {
+    border-radius: 10px;
+    margin: 23px 0 0 0;
+    padding: 14px 60px;
+    width: 240px;
+    background-color: rgba(106, 83, 245, 0.1);
+    border: none;
+  }
+}
 //Добавить переменные для цветов

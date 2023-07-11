@@ -1,12 +1,14 @@
 import { FC, Fragment, useState } from "react";
 import ReactPaginate from "react-paginate";
+import { reserveHotel, resetFilters, unreserveHotel } from "../../../store/hotelSlice";
+import { Button } from '../../Button/Button';
+import { ButtonReserver } from "../../ButtonReserver/ButtonReserver";
 import { ReactComponent as ActiveStar } from '../../../assets/svg/activeStar.svg';
 import { ReactComponent as NonActiveStar } from '../../../assets/svg/star.svg';
 import { ReactComponent as Geoposition } from '../../../assets/svg/geoposition.svg';
-import styles from './HotelItems.module.scss';
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { reserveHotel, unreserveHotel } from "../../../store/hotelSlice";
-import { ButtonReserver } from "../../ButtonReserver/ButtonReserver";
+import { ReactComponent as EmptyHotels } from "../../../assets/svg/emptyHotels.svg";
+import styles from './HotelItems.module.scss';
 
 
 export const HotelItems: FC = () => {
@@ -80,7 +82,15 @@ export const HotelItems: FC = () => {
 
     return (
         <div>
-            {renderItems}
+            {renderItems.length > 0 && renderItems}
+            {renderItems.length <= 0 && (
+                <div className={styles.emptyHotels}>
+                    <EmptyHotels />
+                    <h3 className={styles.emptyTitle}>По данным параметрам ничего не найдено</h3>
+                    <p className={styles.emptyText}>Попробуйте изменить параметры фильтрации или вернуться в общий каталог</p>
+                    <Button className={styles.resetBtn} onClick={() => dispatch(resetFilters())}>Очистить фильтр</Button>
+                </div>
+            )}
             <ReactPaginate
                 className={styles.paginatePage}
                 breakLabel="..."
